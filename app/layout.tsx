@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
+import { MovexProvider } from "movex-react";
+import movexConfig from "../src/movex.config";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -22,7 +24,14 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  // TODO: Make this not local host
+  const endpointUrl = 'localhost:3333';
   return (
+    <MovexProvider
+      movexDefinition={movexConfig}
+      endpointUrl={endpointUrl}
+      onConnectionStatusChange={(state) => console.log( `Movex Status: ${state.status}`)}
+    >
     <html lang="en">
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
@@ -30,5 +39,6 @@ export default function RootLayout({
         {children}
       </body>
     </html>
+    </MovexProvider>
   );
 }
