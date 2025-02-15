@@ -7,14 +7,14 @@ export default function Canvas() {
   const canvasRef = useRef(null);
   return (
     <div
-      className="relative w-[500px] h-[500px]"
+      className="relative w-[1000px] h-[1000px]"
     >
       {/* The canvas we are drawing to */}
       <canvas
         id="arcadiaMap"
         ref={canvasRef}
-        width={500}
-        height={500}
+        width={1000}
+        height={1000}
         className="absolute top-0 left-0"
       />
       {/* Background image that gets drawn under the canvas */}
